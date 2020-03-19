@@ -77,14 +77,15 @@
                 android:text="Sofie Turner"
                 android:textColor="#FFFFFF"
                 android:textSize="40px" />
-            <ImageButton
-                android:id="@+id/btn1"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/btn_avatar"
                 android:layout_width="80px"
                 android:layout_height="80px"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/img_background"
-                android:src="@drawable/avatar"></ImageButton>
+                android:src="@drawable/avatar"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FFFFFFFF"/>
         </LinearLayout>
 
         <LinearLayout
@@ -146,17 +147,24 @@
         android:layout_alignParentRight="true"
         android:paddingTop="50dp"
         android:paddingBottom="50dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="120px"
+            android:layout_height="120px"
             android:layout_gravity="center"
-            android:src="@drawable/circle"/>
+            android:src="@drawable/avatar"
+            android:background="@null"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FFFFFFFF"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Sofie Turner" />
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:text="Sofie Turner"
+            android:textColor="#eff28d"/>
 
         <Button
             android:layout_width="match_parent"
@@ -204,10 +212,10 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="#80606880"
+            android:background="@drawable/round_shape_button"
             android:maxLines="1"
             android:text="Close"
-            android:textAllCaps="false" />
-
+            android:textAllCaps="false"
+            />
     </LinearLayout>
 </RelativeLayout>

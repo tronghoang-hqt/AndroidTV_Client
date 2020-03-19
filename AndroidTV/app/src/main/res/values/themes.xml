@@ -22,7 +22,7 @@
     </style>
 
     <style name="Theme.Example.LeanbackLauncher" parent="Theme.Example.Leanback">
-        <item name="android:windowBackground">@drawable/bg_living_room_wide</item>
+        <item name="android:background">#252c3c</item>
         <item name="browseRowsMarginTop">275dp</item>
     </style>
 
