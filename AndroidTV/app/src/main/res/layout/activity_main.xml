@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/top_linear_layout">
+        <LinearLayout
+            android:id="@+id/utility_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:focusable="true"></Button>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:id="@+id/usename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/btn1"
+                android:text="Sofie Turner"
+                android:textColor="#FFFFFF"
+                android:textSize="40px" />
+
+            <ImageButton
+                android:id="@+id/btn2"
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:background="@null"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/usename"
+                android:src="@drawable/notifications"></ImageButton>
+
+            <ImageButton
+                android:id="@+id/btn3"
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/btn2"
+                android:background="@null"
+                android:src="@drawable/mail"></ImageButton>
+
+            <ImageButton
+                android:id="@+id/btn4"
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/btn3"
+                android:background="@null"
+                android:src="@drawable/about"></ImageButton>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/fragment_btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:text="Fragment1" />
+
+            <Button
+                android:id="@+id/fragmen_btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:text="Fragment2" />
+        </LinearLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top_linear_layout" />
+</RelativeLayout>

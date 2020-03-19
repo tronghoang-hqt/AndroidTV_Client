@@ -71,7 +71,7 @@ public class VideoGridExampleFragment extends VerticalGridFragment implements
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(getString(R.string.video_grid_example_title));
+        setTitle("");
         setupRowAdapter();
     }
     private void setupRowAdapter() {
@@ -98,7 +98,7 @@ public class VideoGridExampleFragment extends VerticalGridFragment implements
     }
 
     private void createRows() {
-        String urlToFetch = getResources().getString(R.string.videos_url);
+        String urlToFetch = this.getResources().getString(R.string.videos_url);
         fetchVideosInfo(urlToFetch);
     }
 
