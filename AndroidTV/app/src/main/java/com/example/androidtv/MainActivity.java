@@ -13,6 +13,7 @@ import android.widget.Button;
 public class MainActivity extends Activity {
     Button fragmentBtn1;
     Button fragmentBtn2;
+    Button fragmentBtn3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         fragmentBtn1 = findViewById(R.id.fragment_btn1);
         fragmentBtn2 = findViewById(R.id.fragmen_btn2);
+        fragmentBtn3 = findViewById(R.id.fragmen_btn3);
+        loadFragment(new Fragment1());
         fragmentBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,6 +33,12 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 loadFragment(new Fragment2());
+            }
+        });
+        fragmentBtn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new Fragment3());
             }
         });
     }

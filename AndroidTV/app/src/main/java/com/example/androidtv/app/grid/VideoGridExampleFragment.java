@@ -98,7 +98,7 @@ public class VideoGridExampleFragment extends VerticalGridFragment implements
     }
 
     private void createRows() {
-        String urlToFetch = this.getResources().getString(R.string.videos_url);
+        String urlToFetch = getResources().getString(R.string.videos_url);
         fetchVideosInfo(urlToFetch);
     }
 

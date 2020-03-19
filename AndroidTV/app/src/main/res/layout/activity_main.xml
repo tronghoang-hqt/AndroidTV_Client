@@ -5,11 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <LinearLayout
+        android:id="@+id/top_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/top_linear_layout">
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginRight="60dp"
+        android:orientation="vertical">
+
         <LinearLayout
             android:id="@+id/utility_bar"
             android:layout_width="match_parent"
@@ -18,36 +23,28 @@
 
             <EditText
                 android:layout_width="300dp"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:gravity="right"
-                android:focusable="true"></Button>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:background="@null"
+                android:src="@drawable/ic_search_black_24dp"
+                android:layout_marginLeft="5dp"/>
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                />
-
-            <TextView
-                android:id="@+id/usename"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@+id/btn1"
-                android:text="Sofie Turner"
-                android:textColor="#FFFFFF"
-                android:textSize="40px" />
+                android:layout_weight="1" />
 
             <ImageButton
                 android:id="@+id/btn2"
                 android:layout_width="80px"
                 android:layout_height="80px"
-                android:background="@null"
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/usename"
+                android:background="@null"
                 android:src="@drawable/notifications"></ImageButton>
 
             <ImageButton
@@ -67,10 +64,22 @@
                 android:layout_toLeftOf="@+id/btn3"
                 android:background="@null"
                 android:src="@drawable/about"></ImageButton>
+
+            <TextView
+                android:id="@+id/usename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/btn1"
+                android:text="Sofie Turner"
+                android:textColor="#FFFFFF"
+                android:textSize="40px" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <Button
@@ -78,16 +87,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:text="Fragment1" />
+                android:text="Movies" />
 
             <Button
                 android:id="@+id/fragmen_btn2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:background="@null"
-                android:text="Fragment2" />
+                android:text="TV Shows" />
+            <Button
+                android:id="@+id/fragmen_btn3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="@null"
+                android:text="Watchlist" />
         </LinearLayout>
     </LinearLayout>
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
