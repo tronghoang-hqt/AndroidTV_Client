@@ -18,8 +18,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fragmentBtn1 = findViewById(R.id.fragment_btn1);
-        fragmentBtn2 = findViewById(R.id.fragmen_btn2);
+        fragmentBtn1 = findViewById(R.id.home);
+        fragmentBtn2 = findViewById(R.id.tvshow);
+        loadFragment(new Fragment1());
         fragmentBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
