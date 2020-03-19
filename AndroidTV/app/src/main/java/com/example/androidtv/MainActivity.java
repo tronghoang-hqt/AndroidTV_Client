@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,9 +24,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fragmentBtn1 = findViewById(R.id.fragment_btn1);
-        fragmentBtn2 = findViewById(R.id.fragmen_btn2);
-        fragmentBtn3 = findViewById(R.id.fragmen_btn3);
+        fragmentBtn1 = findViewById(R.id.movies);
+        fragmentBtn2 = findViewById(R.id.tvshow);
+        fragmentBtn3 = findViewById(R.id.watchlist);
         notiBtn = findViewById(R.id.btn_noti);
         layout = findViewById(R.id.side_tab_menu_layout);
         sideTabClosingButton = findViewById(R.id.sidE_tab_close_btn);
@@ -33,18 +34,27 @@ public class MainActivity extends Activity {
         fragmentBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fragmentBtn1.setTextColor(Color.WHITE);
+                fragmentBtn2.setTextColor(Color.LTGRAY);
+                fragmentBtn3.setTextColor(Color.LTGRAY);
                 loadFragment(new Fragment1());
             }
         });
         fragmentBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fragmentBtn1.setTextColor(Color.LTGRAY);
+                fragmentBtn2.setTextColor(Color.WHITE);
+                fragmentBtn3.setTextColor(Color.LTGRAY);
                 loadFragment(new Fragment2());
             }
         });
         fragmentBtn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fragmentBtn1.setTextColor(Color.LTGRAY);
+                fragmentBtn2.setTextColor(Color.LTGRAY);
+                fragmentBtn3.setTextColor(Color.WHITE);
                 loadFragment(new Fragment3());
             }
         });

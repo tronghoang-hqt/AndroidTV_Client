@@ -10,9 +10,9 @@
         android:id="@+id/top_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="90dp"
         android:layout_marginTop="27dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginRight="85dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -21,17 +21,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="match_parent" />
-
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:layout_gravity="left"
+                android:layout_marginLeft="5dp"
+                android:paddingTop="10dp"
                 android:background="@null"
-                android:src="@drawable/ic_search_black_24dp"
-                android:layout_marginLeft="5dp"/>
+                android:src="@drawable/ic_search_black_24dp" />
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:hint="Search for movies and TV shows..."/>
 
             <View
                 android:layout_width="0dp"
@@ -74,6 +77,14 @@
                 android:text="Sofie Turner"
                 android:textColor="#FFFFFF"
                 android:textSize="40px" />
+            <ImageButton
+                android:id="@+id/btn1"
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/img_background"
+                android:src="@drawable/avatar"></ImageButton>
         </LinearLayout>
 
         <LinearLayout
@@ -83,26 +94,35 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/fragment_btn1"
+                android:id="@+id/movies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:text="Movies" />
+                android:text="Movies"
+                android:paddingRight="15dp"
+                android:textColor="#FFFFFF"
+                android:textSize="40px"/>
 
             <Button
-                android:id="@+id/fragmen_btn2"
+                android:id="@+id/tvshow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:background="@null"
-                android:text="TV Shows" />
+                android:text="TV Shows"
+                android:textColor="@color/default_color"
+                android:paddingRight="15dp"
+                android:textSize="40px"/>
             <Button
-                android:id="@+id/fragmen_btn3"
+                android:id="@+id/watchlist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:background="@null"
-                android:text="Watchlist" />
+                android:text="Watchlist"
+                android:textColor="@color/default_color"
+                android:paddingRight="15dp"
+                android:textSize="40px"/>
         </LinearLayout>
     </LinearLayout>
 
