@@ -71,7 +71,7 @@ public class VideoGridExampleFragment extends VerticalGridFragment implements
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(getString(R.string.video_grid_example_title));
+        setTitle("");
         setupRowAdapter();
     }
     private void setupRowAdapter() {

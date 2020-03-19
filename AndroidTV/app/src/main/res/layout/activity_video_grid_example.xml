@@ -2,31 +2,57 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageButton
+        android:id="@+id/btn1"
+        android:layout_width="80px"
+        android:layout_height="80px"
         android:layout_alignParentRight="true"
-        android:src="@drawable/lb_ic_fast_forward"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/img_background"
+        android:src="@drawable/avatar"></ImageButton>
+    <TextView
+        android:id="@+id/usename"
         android:layout_width="wrap_content"
-        android:layout_height="100px"
-        android:id="@+id/btn1"></ImageButton>
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="100px"
-        android:src="@drawable/lb_ic_fast_forward"
-        android:background="#FFFFFF"
-        android:layout_marginRight="10px"
+        android:layout_height="80px"
+        android:layout_marginRight="5dp"
+        android:textColor="#FFFFFF"
+        android:textSize="40px"
         android:layout_toLeftOf="@+id/btn1"
-        android:id="@+id/btn2"></ImageButton>
+        android:layout_marginTop="10px"
+        android:text="Sofie Turner" />
+
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="100px"
-        android:layout_marginRight="10px"
+        android:id="@+id/btn2"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:background="@null"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/usename"
+        android:src="@drawable/notifications"></ImageButton>
+
+    <ImageButton
+        android:id="@+id/btn3"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/btn2"
-        android:id="@+id/btn3"></ImageButton>
+        android:background="@null"
+        android:src="@drawable/mail"></ImageButton>
+
+    <ImageButton
+        android:id="@+id/btn4"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/btn3"
+        android:background="@null"
+        android:src="@drawable/help_about"></ImageButton>
+
     <fragment
         android:id="@+id/cardsFragment"
         android:name="com.example.androidtv.app.grid.VideoGridExampleFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/btn1"
-        ></fragment>
+        android:layout_below="@+id/btn1"></fragment>
 </RelativeLayout>
