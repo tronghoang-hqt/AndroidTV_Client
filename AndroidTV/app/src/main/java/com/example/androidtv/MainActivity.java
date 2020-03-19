@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
     Button fragmentBtn1;
     Button fragmentBtn2;
     Button fragmentBtn3;
-    ImageButton notiBtn;
+    ImageButton avatar;
     LinearLayout layout;
     Button sideTabClosingButton;
     @Override
@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
         fragmentBtn1 = findViewById(R.id.movies);
         fragmentBtn2 = findViewById(R.id.tvshow);
         fragmentBtn3 = findViewById(R.id.watchlist);
-        notiBtn = findViewById(R.id.btn_noti);
+        avatar = findViewById(R.id.btn1);
         layout = findViewById(R.id.side_tab_menu_layout);
         sideTabClosingButton = findViewById(R.id.sidE_tab_close_btn);
         loadFragment(new Fragment1());
@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
                 loadFragment(new Fragment3());
             }
         });
-        notiBtn.setOnClickListener(new View.OnClickListener() {
+        avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 layout.setVisibility(View.VISIBLE);
