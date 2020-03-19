@@ -39,7 +39,7 @@
                 android:layout_weight="1" />
 
             <ImageButton
-                android:id="@+id/btn2"
+                android:id="@+id/btn_noti"
                 android:layout_width="80px"
                 android:layout_height="80px"
                 android:layout_marginRight="10dp"
@@ -106,9 +106,88 @@
         </LinearLayout>
     </LinearLayout>
 
+
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/top_linear_layout" />
+
+
+    <LinearLayout
+        android:id="@+id/side_tab_menu_layout"
+        android:layout_width="250dp"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="#A6000000"
+        android:clickable="true"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:paddingTop="50dp"
+        android:paddingBottom="50dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/circle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Sofie Turner" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:text="My Account"
+            android:textAllCaps="false"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:text="Device Settings"
+            android:textAllCaps="false"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:text="My Activities"
+            android:textAllCaps="false"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:text="Download"
+            android:textAllCaps="false"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:text="Log out"
+            android:textAllCaps="false"/>
+        <Button
+            android:id="@+id/sidE_tab_close_btn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#80606880"
+            android:maxLines="1"
+            android:text="Close"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
 </RelativeLayout>
