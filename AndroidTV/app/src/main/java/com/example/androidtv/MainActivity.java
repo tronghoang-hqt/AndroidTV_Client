@@ -20,48 +20,72 @@ import android.widget.LinearLayout;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends Activity {
-    Button fragmentBtn1;
-    Button fragmentBtn2;
-    Button fragmentBtn3;
+public class MainActivity extends Activity{
+    ImageButton searchBtn, notiBtn, mailBtn, contactBtn;
+    Button sideTabClosingBtn, moviesBtn, tvShowsBtn, watchListBtn, accountBtn,settingsBtn, activitiesBtn, downloadBtn, logoutBtn;
     CircleImageView avatarBtn;
     LinearLayout layout;
-    Button sideTabClosingButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fragmentBtn1 = findViewById(R.id.movies);
-        fragmentBtn2 = findViewById(R.id.tvshow);
-        fragmentBtn3 = findViewById(R.id.watchlist);
-        avatarBtn = findViewById(R.id.btn_avatar);
-        layout = findViewById(R.id.side_tab_menu_layout);
-        sideTabClosingButton = findViewById(R.id.sidE_tab_close_btn);
+        init();
         loadFragment(new Fragment1());
-        fragmentBtn1.setOnClickListener(new View.OnClickListener() {
+        searchBtn.setFocusedByDefault(false);
+        setButtonOnClickListener();
+        setButtonOnFocusListener();
+    }
+
+    private void init(){
+        searchBtn = findViewById(R.id.search_btn);
+        notiBtn = findViewById(R.id.btn_noti);
+        mailBtn = findViewById(R.id.btn_mail);
+        contactBtn = findViewById(R.id.btn_contact);
+        avatarBtn = findViewById(R.id.btn_avatar);
+        moviesBtn = findViewById(R.id.btn_movies);
+        tvShowsBtn = findViewById(R.id.btn_tvshow);
+        watchListBtn = findViewById(R.id.btn_watchlist);
+        accountBtn = findViewById(R.id.btn_account);
+        settingsBtn = findViewById(R.id.btn_settings);
+        activitiesBtn = findViewById(R.id.btn_activities);
+        downloadBtn = findViewById(R.id.btn_download);
+        logoutBtn = findViewById(R.id.btn_logout);
+        sideTabClosingBtn = findViewById(R.id.side_tab_close_btn);
+        layout = findViewById(R.id.side_tab_menu_layout);
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.commit();
+    }
+
+    private void setButtonOnClickListener(){
+        moviesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentBtn1.setTextColor(Color.WHITE);
-                fragmentBtn2.setTextColor(Color.LTGRAY);
-                fragmentBtn3.setTextColor(Color.LTGRAY);
+                moviesBtn.setTextColor(Color.WHITE);
+                tvShowsBtn.setTextColor(Color.LTGRAY);
+                watchListBtn.setTextColor(Color.LTGRAY);
                 loadFragment(new Fragment1());
             }
         });
-        fragmentBtn2.setOnClickListener(new View.OnClickListener() {
+        tvShowsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentBtn1.setTextColor(Color.LTGRAY);
-                fragmentBtn2.setTextColor(Color.WHITE);
-                fragmentBtn3.setTextColor(Color.LTGRAY);
+                moviesBtn.setTextColor(Color.LTGRAY);
+                tvShowsBtn.setTextColor(Color.WHITE);
+                watchListBtn.setTextColor(Color.LTGRAY);
                 loadFragment(new Fragment2());
             }
         });
-        fragmentBtn3.setOnClickListener(new View.OnClickListener() {
+        watchListBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentBtn1.setTextColor(Color.LTGRAY);
-                fragmentBtn2.setTextColor(Color.LTGRAY);
-                fragmentBtn3.setTextColor(Color.WHITE);
+                moviesBtn.setTextColor(Color.LTGRAY);
+                tvShowsBtn.setTextColor(Color.LTGRAY);
+                watchListBtn.setTextColor(Color.WHITE);
                 loadFragment(new Fragment3());
             }
         });
@@ -75,7 +99,7 @@ public class MainActivity extends Activity {
                 layout.setVisibility(View.VISIBLE);
             }
         });
-        sideTabClosingButton.setOnClickListener(new View.OnClickListener() {
+        sideTabClosingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Transition transition = new Slide(Gravity.RIGHT);
@@ -87,10 +111,30 @@ public class MainActivity extends Activity {
         });
     }
 
-    private void loadFragment(Fragment fragment) {
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, fragment);
-        fragmentTransaction.commit();
+    private void setButtonOnFocusListener(){
+        ButtonFocusListener focusListener = new ButtonFocusListener();
+        searchBtn.setOnFocusChangeListener(focusListener);
+        notiBtn.setOnFocusChangeListener(focusListener);
+        mailBtn.setOnFocusChangeListener(focusListener);
+        contactBtn.setOnFocusChangeListener(focusListener);
+        avatarBtn.setOnFocusChangeListener(focusListener);
+        moviesBtn.setOnFocusChangeListener(focusListener);
+        tvShowsBtn.setOnFocusChangeListener(focusListener);
+        watchListBtn.setOnFocusChangeListener(focusListener);
+        accountBtn.setOnFocusChangeListener(focusListener);
+        settingsBtn.setOnFocusChangeListener(focusListener);
+        activitiesBtn.setOnFocusChangeListener(focusListener);
+        downloadBtn.setOnFocusChangeListener(focusListener);
+        logoutBtn.setOnFocusChangeListener(focusListener);
+        sideTabClosingBtn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    sideTabClosingBtn.setBackgroundColor(Color.argb(70,240,240,240));
+                }else{
+                    sideTabClosingBtn.setBackgroundResource(R.drawable.round_shape_button);
+                }
+            }
+        });
     }
 }
