@@ -23,6 +23,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.leanback.app.VerticalGridFragment;
+
+import com.example.androidtv.MainActivity;
 import com.example.androidtv.R;
 import com.example.androidtv.app.media.MediaMetaData;
 import com.example.androidtv.app.media.VideoExampleActivity;
@@ -98,8 +100,10 @@ public class VideoGridExampleFragment extends VerticalGridFragment implements
     }
 
     private void createRows() {
-        String urlToFetch = getResources().getString(R.string.videos_url);
-        fetchVideosInfo(urlToFetch);
+        if(isAdded()) {
+            String urlToFetch = getResources().getString(R.string.videos_url);
+            fetchVideosInfo(urlToFetch);
+        }
     }
 
     /**

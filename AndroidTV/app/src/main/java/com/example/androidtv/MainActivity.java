@@ -25,13 +25,16 @@ public class MainActivity extends Activity{
     Button sideTabClosingBtn, moviesBtn, tvShowsBtn, watchListBtn, accountBtn,settingsBtn, activitiesBtn, downloadBtn, logoutBtn;
     CircleImageView avatarBtn;
     LinearLayout layout;
+    Fragment1 fragment1;
+    Fragment2 fragment2;
+    Fragment3 fragment3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        loadFragment(new Fragment1());
-        searchBtn.setFocusedByDefault(false);
+        fragment1 = new Fragment1();
+        loadFragment(fragment1);
         setButtonOnClickListener();
         setButtonOnFocusListener();
     }
@@ -68,7 +71,8 @@ public class MainActivity extends Activity{
                 moviesBtn.setTextColor(Color.WHITE);
                 tvShowsBtn.setTextColor(Color.LTGRAY);
                 watchListBtn.setTextColor(Color.LTGRAY);
-                loadFragment(new Fragment1());
+                fragment1 = new Fragment1();
+                loadFragment(fragment1);
             }
         });
         tvShowsBtn.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +81,8 @@ public class MainActivity extends Activity{
                 moviesBtn.setTextColor(Color.LTGRAY);
                 tvShowsBtn.setTextColor(Color.WHITE);
                 watchListBtn.setTextColor(Color.LTGRAY);
-                loadFragment(new Fragment2());
+                fragment2 = new Fragment2();
+                loadFragment(fragment2);
             }
         });
         watchListBtn.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +91,8 @@ public class MainActivity extends Activity{
                 moviesBtn.setTextColor(Color.LTGRAY);
                 tvShowsBtn.setTextColor(Color.LTGRAY);
                 watchListBtn.setTextColor(Color.WHITE);
-                loadFragment(new Fragment3());
+                fragment3 = new Fragment3();
+                loadFragment(fragment3);
             }
         });
         avatarBtn.setOnClickListener(new View.OnClickListener() {
