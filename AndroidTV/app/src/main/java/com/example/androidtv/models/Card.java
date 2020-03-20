@@ -181,7 +181,6 @@ public class Card {
         CHARACTER,
         GRID_SQUARE,
         VIDEO_GRID
-
     }
 
 }

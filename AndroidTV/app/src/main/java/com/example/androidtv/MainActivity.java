@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,7 +25,8 @@ public class MainActivity extends Activity{
     ImageButton searchBtn, notiBtn, mailBtn, contactBtn;
     Button sideTabClosingBtn, moviesBtn, tvShowsBtn, watchListBtn, accountBtn,settingsBtn, activitiesBtn, downloadBtn, logoutBtn;
     CircleImageView avatarBtn;
-    LinearLayout layout;
+    LinearLayout layout,topLinearLayout;
+    FrameLayout frameLayout;
     Fragment1 fragment1;
     Fragment2 fragment2;
     Fragment3 fragment3;
@@ -55,6 +57,8 @@ public class MainActivity extends Activity{
         logoutBtn = findViewById(R.id.btn_logout);
         sideTabClosingBtn = findViewById(R.id.side_tab_close_btn);
         layout = findViewById(R.id.side_tab_menu_layout);
+        topLinearLayout = findViewById(R.id.top_linear_layout);
+        frameLayout = findViewById(R.id.frameLayout);
     }
 
     private void loadFragment(Fragment fragment) {
@@ -102,6 +106,8 @@ public class MainActivity extends Activity{
                 transition.addTarget(R.id.side_tab_menu_layout);
                 transition.setDuration(300);
                 TransitionManager.beginDelayedTransition(layout,transition);
+                avatarBtn.setNextFocusForwardId(R.id.btn_account);
+                accountBtn.requestFocus();
                 layout.setVisibility(View.VISIBLE);
             }
         });
@@ -112,6 +118,7 @@ public class MainActivity extends Activity{
                 transition.addTarget(R.id.side_tab_menu_layout);
                 transition.setDuration(300);
                 TransitionManager.beginDelayedTransition(layout,transition);
+                sideTabClosingBtn.setNextFocusForwardId(R.id.btn_avatar);
                 layout.setVisibility(View.GONE);
             }
         });
@@ -143,4 +150,6 @@ public class MainActivity extends Activity{
             }
         });
     }
+
+
 }

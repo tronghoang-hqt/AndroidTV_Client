@@ -20,6 +20,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.leanback.app.VerticalGridFragment;
@@ -59,7 +60,7 @@ import java.util.List;
 import java.util.Map;
 
 public class VideoGridExampleFragment extends VerticalGridFragment implements
-        OnItemViewSelectedListener, OnItemViewClickedListener {
+        OnItemViewSelectedListener, OnItemViewClickedListener{
 
     private static final int COLUMNS = 4;
     private static final int ZOOM_FACTOR = FocusHighlight.ZOOM_FACTOR_MEDIUM;
@@ -76,6 +77,22 @@ public class VideoGridExampleFragment extends VerticalGridFragment implements
         setTitle("");
         setupRowAdapter();
     }
+//
+//    public void workaroundFocus(){
+//        if(getView() != null) {
+//            View viewToFocus  = getActivity().findViewById(R.id.view_to_focus);
+//            VideoGridExampleFragment browseFrameLayout = getView().findViewById(R.id.cardsFragment);
+//            browseFrameLayout.setOnFocusSearchListener((focused, direction) -> {
+//                if (direction == View.FOCUS_UP) {
+//                    return viewToFocus;
+//                }
+//                else {
+//                    return null;
+//                }
+//            });
+//        }
+//    }
+
     private void setupRowAdapter() {
         VerticalGridPresenter videoGridPresenter = new VerticalGridPresenter(ZOOM_FACTOR);
         videoGridPresenter.setNumberOfColumns(COLUMNS);
@@ -242,4 +259,7 @@ public class VideoGridExampleFragment extends VerticalGridFragment implements
                                RowPresenter.ViewHolder rowViewHolder, Row row) {
 
     }
+
+
+
 }
