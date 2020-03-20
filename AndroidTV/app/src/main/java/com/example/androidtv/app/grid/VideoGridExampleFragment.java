@@ -62,7 +62,7 @@ public class VideoGridExampleFragment extends VerticalGridFragment implements
     private static final int COLUMNS = 4;
     private static final int ZOOM_FACTOR = FocusHighlight.ZOOM_FACTOR_MEDIUM;
     private static final String TAG = "VideoGridExampleFragment";
-    private static final String TAG_CATEGORY = "googlevideos";
+    private static final String TAG_CATEGORY = "data";
     // Hashmap mapping category names to the list of videos in that category. This is fetched from
     // the url
     private Map<String, List<VideoCard>> categoryVideosMap = new HashMap<>();
