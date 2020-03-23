@@ -6,10 +6,12 @@
     tools:context=".Fragment2">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <fragment
+        android:id="@+id/tvShowsFragment"
+        android:name="com.example.androidtv.app.grid.VideoGridTVShowsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="TV Shows fragment"
-        android:gravity="center"/>
+        android:layout_marginTop="-180dp"
+        ></fragment>
 
 </FrameLayout>

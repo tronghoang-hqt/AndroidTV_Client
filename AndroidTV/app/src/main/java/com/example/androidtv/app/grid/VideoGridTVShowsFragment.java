@@ -1,17 +1,3 @@
-/*
- * Copyright (C) 2016 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
- */
-
 package com.example.androidtv.app.grid;
 
 import android.content.Intent;
@@ -30,6 +16,7 @@ import com.example.androidtv.R;
 import com.example.androidtv.app.media.MediaMetaData;
 import com.example.androidtv.app.media.VideoExampleActivity;
 import com.example.androidtv.cards.presenters.CardPresenterSelector;
+import com.example.androidtv.cards.presenters.SideInfoCardPresenter;
 import com.example.androidtv.cards.presenters.VideoCardViewPresenter;
 import com.example.androidtv.models.VideoCard;
 import com.example.androidtv.models.VideoRow;
@@ -59,10 +46,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class VideoGridExampleFragment extends VerticalGridFragment implements
-        OnItemViewSelectedListener, OnItemViewClickedListener{
+public class VideoGridTVShowsFragment extends VerticalGridFragment implements
+        OnItemViewSelectedListener, OnItemViewClickedListener {
 
-    private static final int COLUMNS = 4;
+    private static final int COLUMNS = 3;
     private static final int ZOOM_FACTOR = FocusHighlight.ZOOM_FACTOR_MEDIUM;
     private static final String TAG = "VideoGridExampleFragment";
     private static final String TAG_CATEGORY = "data";
@@ -88,8 +75,9 @@ public class VideoGridExampleFragment extends VerticalGridFragment implements
         setGridPresenter(videoGridPresenter);
 
 //        PresenterSelector cardPresenterSelector = new CardPresenterSelector(getActivity());
-         VideoCardViewPresenter videoCardViewPresenter = new VideoCardViewPresenter(getActivity());
-        mAdapter = new ArrayObjectAdapter(videoCardViewPresenter);
+//        VideoCardViewPresenter videoCardViewPresenter = new VideoCardViewPresenter(getActivity());
+        SideInfoCardPresenter sideInfoCardPresenter = new SideInfoCardPresenter(getActivity());
+        mAdapter = new ArrayObjectAdapter(sideInfoCardPresenter);
         setAdapter(mAdapter);
 
         prepareEntranceTransition();
@@ -244,7 +232,6 @@ public class VideoGridExampleFragment extends VerticalGridFragment implements
                                RowPresenter.ViewHolder rowViewHolder, Row row) {
 
     }
-
 
 
 }

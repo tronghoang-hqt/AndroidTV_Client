@@ -25,6 +25,7 @@ import androidx.leanback.widget.BaseCardView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.androidtv.models.VideoCard;
 
 /**
  * This Presenter will display a card consisting of an image on the left side of the card followed
@@ -50,22 +51,23 @@ public class SideInfoCardPresenter extends AbstractCardPresenter<BaseCardView> {
     @Override
     public void onBindViewHolder(Card card, BaseCardView cardView) {
         ImageView imageView = cardView.findViewById(R.id.main_image);
-        if (card.getLocalImageResourceName() != null) {
-            int width = (int) getContext().getResources()
-                    .getDimension(R.dimen.sidetext_image_card_width);
-            int height = (int) getContext().getResources()
-                    .getDimension(R.dimen.sidetext_image_card_height);
-            int resourceId = getContext().getResources()
-                    .getIdentifier(card.getLocalImageResourceName(),
-                            "drawable", getContext().getPackageName());
-            RequestOptions myOptions = new RequestOptions()
-                    .override(width, height);
+        VideoCard videoCard = (VideoCard) card;
+//        if (card.getLocalImageResourceName() != null) {
+//            int width = (int) getContext().getResources()
+//                    .getDimension(R.dimen.sidetext_image_card_width);
+//            int height = (int) getContext().getResources()
+//                    .getDimension(R.dimen.sidetext_image_card_height);
+//            int resourceId = getContext().getResources()
+//                    .getIdentifier(card.getLocalImageResourceName(),
+//                            "drawable", getContext().getPackageName());
+//            RequestOptions myOptions = new RequestOptions()
+//                    .override(width, height);
             Glide.with(getContext())
                     .asBitmap()
-                    .load(resourceId)
-                    .apply(myOptions)
+                    .load(videoCard.getImageUrl())
+//                    .apply(myOptions)
                     .into(imageView);
-        }
+//        }
 
         TextView primaryText = cardView.findViewById(R.id.primary_text);
         primaryText.setText(card.getTitle());

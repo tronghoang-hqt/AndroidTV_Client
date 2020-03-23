@@ -65,5 +65,4 @@ public class ImageCardViewPresenter extends AbstractCardPresenter<ImageCardView>
                     .into(cardView.getMainImageView());
         }
     }
-
 }

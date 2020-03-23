@@ -33,7 +33,8 @@ public class VideoCard extends Card {
 
     public VideoCard() {
         super();
-        setType(Type.VIDEO_GRID);
+        //Set card's presenter type (reference: CardPresenterSelector)
+//        setType(Type.SIDE_INFO);
     }
 
     public List<String> getVideoSources() {

@@ -43,7 +43,6 @@ public class VideoCardViewPresenter extends ImageCardViewPresenter {
                 .asBitmap()
                 .load(videoCard.getImageUrl())
                 .into(cardView.getMainImageView());
-
     }
 
 }
