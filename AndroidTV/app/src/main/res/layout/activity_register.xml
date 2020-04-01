@@ -90,8 +90,19 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="434dp"
         android:layout_marginEnd="438dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="31dp"
         android:background="@drawable/mybtn"
         android:text="Register"
         android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/notification"
+        android:layout_width="418dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="272dp"
+        android:layout_marginBottom="97dp"
+        android:background="#496E76"
+        android:textColor="#ff0000" />
 </RelativeLayout>

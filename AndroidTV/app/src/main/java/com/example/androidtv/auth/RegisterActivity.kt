@@ -8,9 +8,11 @@ import android.view.View
 import android.widget.Button
 import com.example.androidtv.MainActivity
 import com.example.androidtv.R
+import com.example.androidtv.models.User
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmConfiguration.Builder
+import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_register.*
 import okhttp3.*
 import org.json.JSONException
@@ -21,7 +23,8 @@ class RegisterActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_register);
+        Realm.init(this);
         val intentLogin = Intent(this, LoginActivity::class.java);
         register.setOnClickListener {
             val passwordPattern =
@@ -92,9 +95,34 @@ class RegisterActivity : Activity() {
 
             @Throws(IOException::class)
             override fun onResponse(call: Call?, response: Response) {
-                val mMessage = response.body().toString();
-                Log.e("Tag", mMessage)
-                startActivity(login);
+                val mMessage = response.body()!!.string()
+                if(JSONObject(mMessage).getString("register")=="true"){
+                    val realm = Realm.getDefaultInstance();
+                    realm.executeTransaction { realm ->
+                        realm.deleteAll()
+                    }
+                    val user = User();
+                    user.setUserId(JSONObject(mMessage).getString("id"));
+                    user.setUsername(JSONObject(mMessage).getString("username"));
+                    user.setEmail(JSONObject(mMessage).getString("email"));
+                    user.setToken(JSONObject(mMessage).getString("token"));
+                    user.setAvatar(JSONObject(mMessage).getString("avatar_url"));
+                    user.setRefreshToken(JSONObject(mMessage).getString("refreshToken"));
+                    realm.beginTransaction();
+                    val copyUser: User = realm.copyToRealm(user);
+                    realm.commitTransaction();
+//                    val results1: RealmResults<User> =
+//                        realm.where(User::class.java).findAll()
+//
+//                    for (c in results1) {
+//                        Log.d("username", c.getUsername())
+//                    }
+//                    startActivity(login);
+                }
+                else {
+                    username.requestFocus();
+                    notification.setText("Username has been registed")
+                }
             }
         })
     }

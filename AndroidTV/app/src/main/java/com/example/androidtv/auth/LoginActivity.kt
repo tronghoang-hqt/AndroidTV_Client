@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import com.example.androidtv.MainActivity
 import com.example.androidtv.R
+import com.example.androidtv.models.User
 import io.realm.Realm
+import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.*
 import org.json.JSONException
@@ -18,6 +20,7 @@ class LoginActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        Realm.init(this);
         val intentRegister = Intent(this, RegisterActivity::class.java);
         val intentMain = Intent(this, MainActivity::class.java);
         login.setOnClickListener {
@@ -79,9 +82,28 @@ class LoginActivity : Activity() {
             @Throws(IOException::class)
             override fun onResponse(call: Call?, response: Response) {
                 val mMessage = response.body()!!.string()
-                Log.e("Tag", JSONObject(mMessage).getString("login"))
                 if(JSONObject(mMessage).getString("login")=="true"){
-                    startActivity(main);
+                    val realm = Realm.getDefaultInstance();
+                    realm.executeTransaction { realm ->
+                        realm.deleteAll()
+                    }
+                    val user = User();
+                    user.setUserId(JSONObject(mMessage).getString("id"));
+                    user.setUsername(JSONObject(mMessage).getString("username"));
+                    user.setEmail(JSONObject(mMessage).getString("email"));
+                    user.setToken(JSONObject(mMessage).getString("token"));
+                    user.setAvatar(JSONObject(mMessage).getString("avatar_url"));
+                    user.setRefreshToken(JSONObject(mMessage).getString("refreshToken"));
+                    realm.beginTransaction();
+                    val copyUser: User = realm.copyToRealm(user);
+                    realm.commitTransaction();
+//                    val results1: RealmResults<User> =
+//                        realm.where(User::class.java).findAll()
+//
+//                    for (c in results1) {
+//                        Log.d("username", c.getUsername())
+//                    }
+//                    startActivity(main);
                 }
                 else {
                     notification.setText("Username or password isn't correct")
