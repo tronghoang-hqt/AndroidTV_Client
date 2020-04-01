@@ -11,6 +11,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -18,11 +19,17 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.example.androidtv.models.User;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MainActivity extends Activity{
     ImageButton searchBtn, notiBtn, mailBtn, contactBtn;
+    TextView userName;
     Button sideTabClosingBtn, moviesBtn, tvShowsBtn, watchListBtn, accountBtn,settingsBtn, activitiesBtn, downloadBtn, logoutBtn;
     CircleImageView avatarBtn;
     LinearLayout layout,topLinearLayout;
@@ -35,7 +42,15 @@ public class MainActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+        Realm.init(this);
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<User> results1 = realm.where(User.class).findAll();
+        if(results1.size()!=0){
+            userName.setText(results1.get(0).getUsername());
+        }
+        realm.close();
         fragment1 = new Fragment1();
+
         loadFragment(fragment1);
         setButtonOnClickListener();
         setButtonOnFocusListener();
@@ -59,6 +74,7 @@ public class MainActivity extends Activity{
         layout = findViewById(R.id.side_tab_menu_layout);
         topLinearLayout = findViewById(R.id.top_linear_layout);
         frameLayout = findViewById(R.id.frameLayout);
+        userName=findViewById(R.id.username);
     }
 
     private void loadFragment(Fragment fragment) {

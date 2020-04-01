@@ -117,7 +117,7 @@ class RegisterActivity : Activity() {
 //                    for (c in results1) {
 //                        Log.d("username", c.getUsername())
 //                    }
-//                    startActivity(login);
+                    startActivity(login);
                 }
                 else {
                     username.requestFocus();

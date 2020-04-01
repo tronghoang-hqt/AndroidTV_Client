@@ -57,7 +57,7 @@
                 android:layout_width="80px"
                 android:layout_height="80px"
                 android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/usename"
+                android:layout_toLeftOf="@+id/username"
                 android:background="@null"
                 android:src="@drawable/notifications"
                 android:focusable="true"
@@ -87,7 +87,7 @@
                 android:nextFocusDown="@+id/btn_movies"></ImageButton>
 
             <TextView
-                android:id="@+id/usename"
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
