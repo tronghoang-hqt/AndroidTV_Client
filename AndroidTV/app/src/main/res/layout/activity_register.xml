@@ -20,6 +20,21 @@
         tools:visibility="visible" />
 
     <EditText
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/logoCompany"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="270dp"
+        android:inputType="textEmailAddress"
+        android:layout_marginEnd="274dp"
+        android:layout_marginBottom="-302dp"
+        android:drawableLeft="@drawable/ic_email"
+        android:hint="Email"
+        android:textColor="#000000" />
+
+    <EditText
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,18 +64,21 @@
         android:hint="Password"
         android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/login"
+
+    <EditText
+        android:id="@+id/confirmpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/username"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:inputType="textPassword"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="371dp"
-        android:layout_marginEnd="501dp"
-        android:layout_marginBottom="170dp"
-        android:background="@drawable/mybtn"
-        android:text="Login"
+        android:layout_marginStart="270dp"
+        android:layout_marginEnd="274dp"
+        android:layout_marginBottom="190dp"
+        android:drawableLeft="@drawable/ic_pass"
+        android:hint="Confirm Password"
         android:textColor="#000000" />
 
     <Button
@@ -70,11 +88,18 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="501dp"
-        android:layout_marginEnd="371dp"
-        android:layout_marginBottom="170dp"
+        android:layout_marginStart="434dp"
+        android:layout_marginEnd="438dp"
+        android:layout_marginBottom="48dp"
         android:background="@drawable/mybtn"
         android:text="Register"
         android:textColor="#000000" />
 
+    <Button
+        android:id="@+id/testbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mybtn"
+        android:text="Test"
+        ></Button>
 </RelativeLayout>
