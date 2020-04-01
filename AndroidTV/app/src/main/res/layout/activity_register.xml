@@ -94,12 +94,4 @@
         android:background="@drawable/mybtn"
         android:text="Register"
         android:textColor="#000000" />
-
-    <Button
-        android:id="@+id/testbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/mybtn"
-        android:text="Test"
-        ></Button>
 </RelativeLayout>

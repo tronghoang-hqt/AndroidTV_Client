@@ -25,7 +25,7 @@
     <string name="action_cicked">Action clicked. Implement your own handler.</string>
     <string name="grid_example_title">Image Grid Example</string>
     <string name="video_grid_example_title">Android TV</string>
-    <string name="videos_url">http://118.71.224.167:3000/video/listvideos</string>
+    <string name="videos_url">https://storage.googleapis.com/android-tv/android_tv_videos_new.json</string>
     <string name="action_play">Play video</string>
     <string name="action_play_not_ready">The video is still being downloaded. Please wait and try
             later.</string>

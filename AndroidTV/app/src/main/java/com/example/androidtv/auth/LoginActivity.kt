@@ -1,13 +1,12 @@
 package com.example.androidtv.auth
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import com.example.androidtv.MainActivity
 import com.example.androidtv.R
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.*
 import org.json.JSONException
@@ -21,7 +20,6 @@ class LoginActivity : Activity() {
         setContentView(R.layout.activity_login)
         val intentRegister = Intent(this, RegisterActivity::class.java);
         val intentMain = Intent(this, MainActivity::class.java);
-
         login.setOnClickListener {
             val passwordPattern =
                 "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}$".toRegex();
@@ -54,12 +52,12 @@ class LoginActivity : Activity() {
     @Throws(IOException::class)
     fun login(main: Intent) {
         val MEDIA_TYPE = MediaType.parse("application/json")
-        val url = "http://118.71.224.167:3000/users/login"
+        val url = "http://192.168.1.107:3000/users/login"
         val client = OkHttpClient()
         val postdata = JSONObject()
         try {
-            postdata.put("username", username.text)
-            postdata.put("password", password.text)
+            postdata.put("username", username.text.toString())
+            postdata.put("password", password.text.toString())
         } catch (e: JSONException) {
             // TODO Auto-generated catch block
             e.printStackTrace()
@@ -81,8 +79,13 @@ class LoginActivity : Activity() {
             @Throws(IOException::class)
             override fun onResponse(call: Call?, response: Response) {
                 val mMessage = response.body()!!.string()
-                Log.e("Tag", mMessage)
-                startActivity(main);
+                Log.e("Tag", JSONObject(mMessage).getString("login"))
+                if(JSONObject(mMessage).getString("login")=="true"){
+                    startActivity(main);
+                }
+                else {
+                    notification.setText("Username or password isn't correct")
+                }
             }
         })
     }

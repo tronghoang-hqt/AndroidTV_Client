@@ -8,6 +8,9 @@ import android.view.View
 import android.widget.Button
 import com.example.androidtv.MainActivity
 import com.example.androidtv.R
+import io.realm.Realm
+import io.realm.RealmConfiguration
+import io.realm.RealmConfiguration.Builder
 import kotlinx.android.synthetic.main.activity_register.*
 import okhttp3.*
 import org.json.JSONException
@@ -19,7 +22,7 @@ class RegisterActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        val intentMain = Intent(this, MainActivity::class.java);
+        val intentLogin = Intent(this, LoginActivity::class.java);
         register.setOnClickListener {
             val passwordPattern =
                 "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}$".toRegex();
@@ -54,16 +57,16 @@ class RegisterActivity : Activity() {
                                     confirmpassword.requestFocus();
                                     confirmpassword.setError("Confirm password isn't same password");
                                 } else{
-                                    register(intentMain);
+                                    register(intentLogin);
                                 }
 
         }
     }
 
     @Throws(IOException::class)
-    fun register(main:Intent) {
+    fun register(login:Intent) {
         val MEDIA_TYPE = MediaType.parse("application/json")
-        val url = "http://118.71.224.167:3000/users/register"
+        val url = "http://192.168.1.107:3000/users/signup"
         val client = OkHttpClient()
         val postdata = JSONObject()
         try {
@@ -85,14 +88,13 @@ class RegisterActivity : Activity() {
             override fun onFailure(call: Call?, e: IOException) {
                 val mMessage = e.message.toString()
                 Log.w("failure Response", mMessage)
-                //call.cancel();
             }
 
             @Throws(IOException::class)
             override fun onResponse(call: Call?, response: Response) {
-                val mMessage = response.body()!!.string()
+                val mMessage = response.body().toString();
                 Log.e("Tag", mMessage)
-                startActivity(main);
+                startActivity(login);
             }
         })
     }
