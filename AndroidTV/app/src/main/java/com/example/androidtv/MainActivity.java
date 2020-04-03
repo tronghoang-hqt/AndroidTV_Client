@@ -151,7 +151,8 @@ public class MainActivity extends Activity {
         accountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intentUserInfo = new Intent(MainActivity.this, UserInfoActivity.class);
+                MainActivity.this.startActivity(intentUserInfo);
             }
         });
         settingsBtn.setOnClickListener(new View.OnClickListener() {

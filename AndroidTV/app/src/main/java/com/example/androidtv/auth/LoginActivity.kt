@@ -81,9 +81,11 @@ class LoginActivity : Activity() {
 
             @Throws(IOException::class)
             override fun onResponse(call: Call?, response: Response) {
-                val mMessage = response.body()!!.string()
+                val mMessage = response.body()!!.string();
+
                 Log.d("data",mMessage);
-                if(JSONObject(mMessage).getString("login")=="true"){
+                response.body()!!.close();
+                if(response.code()==200){
                     val realm = Realm.getDefaultInstance();
                     realm.executeTransaction { realm ->
                         realm.deleteAll()
@@ -106,7 +108,7 @@ class LoginActivity : Activity() {
 //                    }
                     startActivity(main);
                 }
-                else {
+                else if(response.code()==400){
                     username.requestFocus();
                     notification.setText("Username or password isn't correct")
                 }
