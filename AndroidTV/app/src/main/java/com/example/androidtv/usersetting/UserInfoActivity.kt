@@ -25,6 +25,8 @@ class UserInfoActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_infor)
+        val passwordPattern =
+            "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}$".toRegex();
         Realm.init(this)
         val realm = Realm.getDefaultInstance()
         val results1 =
@@ -57,7 +59,15 @@ class UserInfoActivity : Activity() {
             btn_cls_edit_password.setVisibility(View.INVISIBLE);
         }
         save_password_btn.setOnClickListener{
-            changepassword();
+            if(!new_password.getText().matches(passwordPattern)){
+                new_password.requestFocus();
+                new_password.setError("Password is minimum 8 characters, at least one letter, one number and one special character")
+            }else if (new_password.text.toString()!=confirm_password.text.toString()){
+                confirm_password.requestFocus();
+                confirm_password.setError("Confirm password isn't same new password");
+            }else {
+                changepassword();
+            }
         }
         btn_change_avatar.setOnClickListener {
             val intent = Intent()
@@ -132,8 +142,11 @@ class UserInfoActivity : Activity() {
                     startActivity(intent)
                 }
                 else {
-                    current_password.requestFocus();
-                    notification.setText("Current password isn't correct")
+
+                    runOnUiThread(Thread(Runnable {
+                        current_password.requestFocus();
+                        notification.setText("Current password isn't correct")
+                    }))
                 }
             }
         })

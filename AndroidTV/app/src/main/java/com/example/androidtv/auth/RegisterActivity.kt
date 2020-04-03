@@ -120,8 +120,10 @@ class RegisterActivity : Activity() {
                     startActivity(login);
                 }
                 else {
-                    username.requestFocus();
-                    notification.setText("Username has been registed")
+                    runOnUiThread(Thread(Runnable {
+                        username.requestFocus();
+                        notification.setText("Username has been registed")
+                    }))
                 }
             }
         })

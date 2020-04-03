@@ -8,7 +8,6 @@ import com.example.androidtv.MainActivity
 import com.example.androidtv.R
 import com.example.androidtv.models.User
 import io.realm.Realm
-import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.*
 import org.json.JSONException
@@ -38,13 +37,13 @@ class LoginActivity : Activity() {
                 } else
                     if (!password.text.matches(passwordPattern)) {
                         password.requestFocus();
-                        password.setError("Password is minimum 8 characters, at least one letter, one number and one special character:")
+                        password.setError("Password is minimum 8 characters, at least one letter, one number and one special character")
                     } else
                         if (!username.text.matches(usernamePattern)) {
                             username.requestFocus();
                             username.setError("User name doesn't have space and special characters ")
                         } else {
-                            login(intentMain);
+                            login(intentMain)
                         }
         }
         register.setOnClickListener {
@@ -85,7 +84,7 @@ class LoginActivity : Activity() {
 
                 Log.d("data",mMessage);
                 response.body()!!.close();
-                if(response.code()==200){
+                if(JSONObject(mMessage).getString("login")=="true"){
                     val realm = Realm.getDefaultInstance();
                     realm.executeTransaction { realm ->
                         realm.deleteAll()
@@ -108,9 +107,11 @@ class LoginActivity : Activity() {
 //                    }
                     startActivity(main);
                 }
-                else if(response.code()==400){
-                    username.requestFocus();
-                    notification.setText("Username or password isn't correct")
+                else {
+                    runOnUiThread(Thread(Runnable {
+                        username.requestFocus();
+                        notification.setText("Username or password isn't correct")
+                    }))
                 }
             }
         })
