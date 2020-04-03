@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import com.example.androidtv.MainActivity
 import com.example.androidtv.R
 import com.example.androidtv.models.User
@@ -117,6 +118,12 @@ class RegisterActivity : Activity() {
 //                    for (c in results1) {
 //                        Log.d("username", c.getUsername())
 //                    }
+                    runOnUiThread(Thread(Runnable {
+                        val text = "Register succesfully!"
+                        val duration = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(applicationContext, text, duration)
+                        toast.show();
+                    }))
                     startActivity(login);
                 }
                 else {

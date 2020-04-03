@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import com.example.androidtv.ButtonFocusListener
 import com.example.androidtv.MainActivity
 import com.example.androidtv.R
 import com.example.androidtv.models.User
@@ -37,12 +39,20 @@ class UserInfoActivity : Activity() {
             txtUsername.setText(results1[0]!!.username)
             txtEmail.setText(results1[0]!!.email)
             println(results1[0]!!.token)
+            if(LoadImageFromWebOperations(
+                    results1[0]!!.avatar
+                )!=null){
             avatar_user.setImageDrawable(
-                MainActivity.LoadImageFromWebOperations(
+                LoadImageFromWebOperations(
                     results1[0]!!.avatar
                 )
-            )
+            )}
         }
+        val focusListener = ButtonFocusListener();
+        btn_change_avatar.setOnFocusChangeListener(focusListener);
+        btn_cls_edit_password.setOnFocusChangeListener(focusListener);
+        btn_edit_password.setOnFocusChangeListener(focusListener);
+        save_password_btn.setOnFocusChangeListener(focusListener);
         btn_change_avatar.setAllCaps(false);
         btn_edit_password.setOnClickListener{
             new_password.setVisibility(View.VISIBLE);
@@ -137,6 +147,12 @@ class UserInfoActivity : Activity() {
                 val mMessage = response.body()!!.string()
                 Log.d("data",mMessage);
                 if(JSONObject(mMessage).getString("changePassword")=="true"){
+                    runOnUiThread(Thread(Runnable {
+                        val text = "Change password succesfully!"
+                        val duration = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(applicationContext, text, duration)
+                        toast.show();
+                    }))
                     val intent = intent
                     finish()
                     startActivity(intent)

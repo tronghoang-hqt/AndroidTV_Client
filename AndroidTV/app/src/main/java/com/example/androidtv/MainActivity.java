@@ -53,8 +53,10 @@ public class MainActivity extends Activity {
         if (results1.size() != 0) {
             userName.setText(results1.get(0).getUsername());
             name_user.setText(results1.get(0).getUsername());
-            avatarBtn.setImageDrawable(LoadImageFromWebOperations(results1.get(0).getAvatar()));
-            avatar_user.setImageDrawable(LoadImageFromWebOperations(results1.get(0).getAvatar()));
+            if(LoadImageFromWebOperations(results1.get(0).getAvatar())!=null) {
+                avatarBtn.setImageDrawable(LoadImageFromWebOperations(results1.get(0).getAvatar()));
+                avatar_user.setImageDrawable(LoadImageFromWebOperations(results1.get(0).getAvatar()));
+            }
         }
         realm.close();
         fragment1 = new Fragment1();
