@@ -155,17 +155,16 @@
 
     <Button
         android:id="@+id/btn_change_avatar"
-        android:layout_width="123dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="125dp"
-        android:layout_marginBottom="469dp"
+        android:layout_marginEnd="143dp"
+        android:layout_marginBottom="467dp"
         android:background="@null"
         android:fontFamily="monospace"
         android:text="Change avatar"
-        android:textSize="10sp"
-        />
+        android:textSize="10sp" />
 
     <ImageButton
         android:id="@+id/btn_cls_edit_password"
@@ -188,5 +187,16 @@
         android:layout_marginEnd="346dp"
         android:layout_marginBottom="88dp"
         android:textColor="@android:color/holo_red_light" />
+
+    <ImageButton
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="99dp"
+        android:layout_marginBottom="472dp"
+        android:background="@null"
+        android:src="@drawable/ic_close" />
 
 </RelativeLayout>

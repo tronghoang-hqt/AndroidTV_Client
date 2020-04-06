@@ -63,5 +63,6 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     implementation 'com.squareup.okhttp3:okhttp:3.8.0'
+    implementation 'com.nbsp:library:1.8'
 
 }

@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.androidtv.auth.LoginActivity;
 import com.example.androidtv.models.User;
 import com.example.androidtv.usersetting.UserInfoActivity;
 
@@ -166,7 +167,12 @@ public class MainActivity extends Activity {
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Realm realm = Realm.getDefaultInstance();
+                realm.beginTransaction();
+                realm.deleteAll();
+                realm.commitTransaction();
+                Intent intentLogin= new Intent(MainActivity.this, LoginActivity.class);
+                MainActivity.this.startActivity(intentLogin);
             }
         });
     }

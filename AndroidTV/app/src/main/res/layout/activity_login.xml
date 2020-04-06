@@ -31,7 +31,8 @@
         android:layout_marginBottom="-114dp"
         android:drawableLeft="@drawable/ic_username"
         android:hint="User name"
-        android:textColor="#000000" />
+        android:lines="1"
+        android:textColor="#DBE2E4" />
 
     <EditText
         android:id="@+id/password"
@@ -41,13 +42,14 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:inputType="textPassword"
         android:layout_marginStart="272dp"
         android:layout_marginEnd="272dp"
         android:layout_marginBottom="255dp"
         android:drawableLeft="@drawable/ic_pass"
         android:hint="Password"
-        android:textColor="#000000" />
+        android:lines="1"
+        android:inputType="textPassword"
+        android:textColor="#DBE2E4" />
 
     <Button
         android:id="@+id/login"

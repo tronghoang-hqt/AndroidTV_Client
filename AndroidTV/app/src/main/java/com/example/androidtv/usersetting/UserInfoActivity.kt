@@ -2,7 +2,9 @@ package com.example.androidtv.usersetting
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
@@ -12,21 +14,27 @@ import com.example.androidtv.ButtonFocusListener
 import com.example.androidtv.MainActivity
 import com.example.androidtv.R
 import com.example.androidtv.models.User
+import com.nbsp.materialfilepicker.MaterialFilePicker
+import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_user_infor.*
 import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.net.URL
+import java.util.regex.Pattern
 
 
 class UserInfoActivity : Activity() {
-    val PICK_IMAGE = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_infor)
+        if(Build.VERSION.SDK_INT>Build.VERSION_CODES.M && checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
+            requestPermissions(Array<String>(1){android.Manifest.permission.WRITE_EXTERNAL_STORAGE},1001);
+        }
         val passwordPattern =
             "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}$".toRegex();
         Realm.init(this)
@@ -53,6 +61,7 @@ class UserInfoActivity : Activity() {
         btn_cls_edit_password.setOnFocusChangeListener(focusListener);
         btn_edit_password.setOnFocusChangeListener(focusListener);
         save_password_btn.setOnFocusChangeListener(focusListener);
+        close.setOnFocusChangeListener(focusListener)
         btn_change_avatar.setAllCaps(false);
         btn_edit_password.setOnClickListener{
             new_password.setVisibility(View.VISIBLE);
@@ -80,10 +89,16 @@ class UserInfoActivity : Activity() {
             }
         }
         btn_change_avatar.setOnClickListener {
-            val intent = Intent()
-            intent.type = "image/*"
-            intent.action = Intent.ACTION_GET_CONTENT
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE)
+            MaterialFilePicker()
+                .withActivity(this)
+                .withRequestCode(1000)
+                .withFilter(Pattern.compile(".*\\.(png|jpg|gif|bmp)"))
+                .withHiddenFiles(true) // Show hidden files and folders
+                .start()
+        }
+        close.setOnClickListener {
+            val intentMain=Intent(this,MainActivity::class.java);
+            startActivity(intentMain);
         }
     }
     fun LoadImageFromWebOperations(url: String?): Drawable? {
@@ -99,9 +114,15 @@ class UserInfoActivity : Activity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == PICK_IMAGE) {
-            //TODO: action
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent
+    ) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1000 && resultCode == RESULT_OK) {
+            val filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH)
+            uploadImg(filePath);
         }
     }
 
@@ -115,7 +136,6 @@ class UserInfoActivity : Activity() {
             ).findAll()
         if (results1.size != 0) {
             token=results1[0]!!.token
-            println(token)
         }
         val MEDIA_TYPE = MediaType.parse("application/json")
         val url = "http://192.168.1.107:3000/users/changepassword"
@@ -167,4 +187,79 @@ class UserInfoActivity : Activity() {
             }
         })
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode==1001){
+            if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this,"Permission granted",Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(this,"Permission granted",Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+    @Throws(IOException::class)
+    fun uploadImg(filePath:String) {
+        val  MEDIA_TYPE_PNG = MediaType.parse("image/*");
+        val filename: String = filePath.substring(filePath.lastIndexOf("/") + 1)
+        val file=File(filePath);
+        var token:String="";
+        val realm = Realm.getDefaultInstance()
+        val results1 =
+            realm.where(
+                User::class.java
+            ).findAll()
+        if (results1.size != 0) {
+            token=results1[0]!!.token
+        }
+        val url = "http://192.168.1.107:3000/users/avatar"
+        val client = OkHttpClient()
+
+        val req: RequestBody =
+            MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("avatar", filename, RequestBody.create(MEDIA_TYPE_PNG, file)).build()
+        val request: Request = Request.Builder()
+            .url(url)
+            .post(req)
+            .header("Accept", "application/json")
+            .header("Content-Type", "application/json").header("token",token)
+            .build()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call?, e: IOException) {
+                val mMessage = e.message.toString()
+                Log.w("failure Response", mMessage)
+                //call.cancel();
+            }
+
+            @Throws(IOException::class)
+            override fun onResponse(call: Call?, response: Response) {
+                val mMessage = response.body()!!.string()
+                Log.d("data",mMessage);
+                val avatar_url=JSONObject(mMessage).getString("avatar_url");
+                val realm = Realm.getDefaultInstance();
+                realm.beginTransaction();
+                val results1 =
+                    realm.where(
+                        User::class.java
+                    ).findAll();
+                results1[0]?.setAvatar(avatar_url);
+                realm.commitTransaction();
+                runOnUiThread(Thread(Runnable {
+                    val text = "Change avatar succesfully!"
+                    val duration = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(applicationContext, text, duration)
+                    toast.show();
+                }))
+                val intent = intent
+                finish()
+                startActivity(intent)
+            }
+        })
+    }
+
 }
