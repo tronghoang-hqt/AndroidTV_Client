@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.androidtv.ButtonFocusListener
 import com.example.androidtv.MainActivity
@@ -71,6 +72,9 @@ class UserInfoActivity : Activity() {
             btn_cls_edit_password.setVisibility(View.VISIBLE);
         }
         btn_cls_edit_password.setOnClickListener{
+            val imm: InputMethodManager =
+                this.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(this.currentFocus?.getWindowToken(), 0);
             new_password.setVisibility(View.INVISIBLE);
             confirm_password.setVisibility(View.INVISIBLE);
             current_password.setVisibility(View.INVISIBLE);
